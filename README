@@ -1,53 +1,106 @@
-📌 Cobesa - Aplicación en Flet
-🚀 Instalación y Configuración
-1️⃣ Crear la carpeta del proyecto
-bash
-Copiar
-Editar
-mkdir cobesa && cd cobesa
-2️⃣ Crear y activar un entorno virtual
-Windows
-bash
-Copiar
-Editar
-python -m venv venv
-venv\Scripts\activate
-macOS/Linux
-bash
-Copiar
-Editar
-python -m venv venv
-source venv/bin/activate
-3️⃣ Instalar las dependencias necesarias
-bash
-Copiar
-Editar
-pip install flet pandas dbfread matplotlib reportlab python-dotenv
-4️⃣ Guardar las dependencias en un archivo
-bash
-Copiar
-Editar
-pip freeze > requirements.txt
-🎨 Conversión de archivos UI y Recursos en PySide6
-Para convertir archivos .ui a Python:
+# 📌 Cobesa - Aplicación en Flet
 
-bash
-Copiar
-Editar
-pyside6-uic main_window.ui -o ui_main_window.py
-Para convertir archivos de recursos .qrc a Python:
+## Descripción
 
-bash
-Copiar
-Editar
-pyside6-rcc resource.qrc -o resource_rc.py
-🛠 Manejo de Estados en Flet
-Sesiones de usuario: page.session
-Estado persistente global: Clase AppState
-Compartir datos entre vistas: page.data
-Actualización de UI en tiempo real: Ref
-📜 Notas Adicionales
-Asegúrate de activar el entorno virtual cada vez que trabajes en el proyecto.
-Si agregas nuevas dependencias, recuerda ejecutar pip freeze > requirements.txt.
-Usa Ref en Flet para actualizar la UI sin necesidad de recargar la vista.
-¡Listo para comenzar con Cobesa! 🚀🎯
+**Cobesa** es una aplicación fullstack diseñada para administrar y gestionar la cuenta de los usuarios de la Empresa Cobesa, dedicada a servicios de agua potable. El proyecto está desarrollado en **Python** y **Flet**, con **PostgreSQL** como base de datos.
+
+## Tabla de Contenidos
+
+- [Descripción](#descripción)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Contribuir](#contribuir)
+- [Licencia](#licencia)
+- [Estructura de ramas](#flujo-de-trabajo-de-ramas)
+
+## Tecnologías Utilizadas
+
+- **Frontend y Backend:**
+  - [Python](https://www.python.org/)
+  - [Flet](https://flet.dev/)
+  
+- **Base de Datos:**
+  - [PostgreSQL](https://www.postgresql.org/)
+
+- **Otras Herramientas:**
+  - [Git](https://git-scm.com/)
+  - [GitHub](https://github.com/)
+  - [Postman](https://www.postman.com/) (para probar APIs)
+
+## Instalación
+
+### Requisitos Previos
+
+- [Python 3.10+](https://www.python.org/)
+- [Git](https://git-scm.com/)
+- Una cuenta de [GitHub](https://github.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+
+### Pasos para Instalar
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/tu-usuario/cobesa.git
+   cd cobesa
+   ```
+
+2. **Crear un entorno virtual y activarlo:**
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # En Windows: venv\Scripts\activate
+   ```
+
+3. **Instalar dependencias:**
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. **Configurar PostgreSQL:**
+   - Crear la base de datos y configurar las credenciales en el archivo `.env`.
+
+5. **Ejecutar la aplicación:**
+   ```bash
+   python main.py
+   ```
+
+## Flujo de Trabajo de Ramas
+
+Para mantener el proyecto organizado y facilitar la colaboración, seguimos un flujo de trabajo basado en ramas:
+
+### 1. Rama Principal (`main`)
+- Contiene el código estable y listo para producción.
+
+### 2. Rama de Desarrollo (`develop`)
+- Integra nuevas funcionalidades antes de ser fusionadas en `main`.
+
+### 3. Ramas de Funcionalidad (`feature/*`)
+- Cada nueva característica o mejora se desarrolla en una rama independiente.
+- Ejemplo:
+  ```bash
+  git checkout -b feature/nueva-funcionalidad develop
+  ```
+
+### 4. Ramas de Corrección de Errores (`bugfix/*`)
+- Para solucionar errores detectados en `develop`.
+
+### 5. Ramas de Lanzamiento (`release/*`)
+- Se crean cuando el código en `develop` está listo para ser lanzado.
+
+### 6. Ramas de Hotfix (`hotfix/*`)
+- Para corregir errores críticos directamente en `main`.
+
+## Contribuir
+
+1. Hacer un fork del repositorio.
+2. Crear una nueva rama con la funcionalidad o corrección.
+3. Hacer un pull request describiendo los cambios.
+
+## Licencia
+
+Este proyecto está bajo la licencia MIT. Para más información, revisa el archivo `LICENSE`.
+
+---
+Si tienes dudas o sugerencias, no dudes en contribuir o ponerte en contacto con el equipo de desarrollo. 🚀
+
