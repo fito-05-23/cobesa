@@ -1,0 +1,29 @@
+# Archivos de Python compilados
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entorno virtual (venv)
+venv/
+.env/
+*.env
+
+# Archivos de logs y errores
+logs/
+*.log
+debug.log
+error.log
+
+# Archivos de configuración del sistema operativo
+.DS_Store
+Thumbs.db
+
+# Configuración de IDEs
+.vscode/
+.idea/
+*.swp
+
+# Base de datos SQLite (si la usas)
+*.db
+*.sqlite3

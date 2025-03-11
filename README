@@ -1,0 +1,53 @@
+📌 Cobesa - Aplicación en Flet
+🚀 Instalación y Configuración
+1️⃣ Crear la carpeta del proyecto
+bash
+Copiar
+Editar
+mkdir cobesa && cd cobesa
+2️⃣ Crear y activar un entorno virtual
+Windows
+bash
+Copiar
+Editar
+python -m venv venv
+venv\Scripts\activate
+macOS/Linux
+bash
+Copiar
+Editar
+python -m venv venv
+source venv/bin/activate
+3️⃣ Instalar las dependencias necesarias
+bash
+Copiar
+Editar
+pip install flet pandas dbfread matplotlib reportlab python-dotenv
+4️⃣ Guardar las dependencias en un archivo
+bash
+Copiar
+Editar
+pip freeze > requirements.txt
+🎨 Conversión de archivos UI y Recursos en PySide6
+Para convertir archivos .ui a Python:
+
+bash
+Copiar
+Editar
+pyside6-uic main_window.ui -o ui_main_window.py
+Para convertir archivos de recursos .qrc a Python:
+
+bash
+Copiar
+Editar
+pyside6-rcc resource.qrc -o resource_rc.py
+🛠 Manejo de Estados en Flet
+Sesiones de usuario: page.session
+Estado persistente global: Clase AppState
+Compartir datos entre vistas: page.data
+Actualización de UI en tiempo real: Ref
+📜 Notas Adicionales
+Asegúrate de activar el entorno virtual cada vez que trabajes en el proyecto.
+Si agregas nuevas dependencias, recuerda ejecutar pip freeze > requirements.txt.
+Usa Ref en Flet para actualizar la UI sin necesidad de recargar la vista.
+¡Listo para comenzar con Cobesa! 🚀🎯
