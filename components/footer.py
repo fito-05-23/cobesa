@@ -8,7 +8,7 @@ def footer(page: ft.Page, app_state):
         content=ft.Row(
             controls=[ft.Text("© 2025 - D@Code", size=12, 
                 weight=ft.FontWeight.W_900,
-                color=ft.colors.ON_PRIMARY_CONTAINER)],
+                color=COLORS["primary"])],
                 alignment=ft.MainAxisAlignment.END,
         ),
         height=20,

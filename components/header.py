@@ -11,6 +11,7 @@ def open_settings(e):
 
 def close_menu(e):
     print("Cerrar sesión")
+    
 
 def header(toggle_drawer, menu, page: ft.Page, app_state):
     # Contenedor para la barra de búsqueda, icono de notificaciones, avatar de usuario y menú contextual
@@ -20,17 +21,19 @@ def header(toggle_drawer, menu, page: ft.Page, app_state):
                 # Input de búsqueda
                 ft.TextField(
                     hint_text="Buscar...",
-                    prefix_icon=ft.Icon(ft.icons.SEARCH),
+                    hint_style=ft.TextStyle(color=COLORS["primary"]),  
+                    color=COLORS["primary"],
+                    prefix_icon=ft.Icon(ft.icons.SEARCH, color=COLORS["on_primary"]),
                     border_radius=ft.border_radius.all(20),
                     height=35,
                     content_padding=ft.padding.only(left=10, right=10),
-                    border_color=ft.colors.PRIMARY_CONTAINER,
+                    border_color= COLORS["on_primary"],
                     width=250,
                 ),
                 # Icono de notificaciones
                 ft.IconButton(
                     icon=ft.icons.NOTIFICATIONS,
-                    #icon_color=ft.colors.ON_PRIMARY_CONTAINER,
+                    icon_color=COLORS["on_primary"],
                     tooltip="Notificaciones",
                     on_click=lambda e: print("Notificaciones clicked"),
                 ),
@@ -41,7 +44,7 @@ def header(toggle_drawer, menu, page: ft.Page, app_state):
                 ),
                 # Menú contextual de usuario
                 ft.PopupMenuButton(
-                    content=ft.Icon(ft.icons.ARROW_DROP_DOWN),
+                    content=ft.Icon(ft.icons.ARROW_DROP_DOWN, color=COLORS["on_primary"]),
                     menu_position=ft.PopupMenuPosition.UNDER,  # Hace que el menú se despliegue debajo del icono
                     elevation=4,  # Reduce la sombra del menú para que no sea tan pronunciada
                     bgcolor=ft.colors.WHITE,  # Fondo blanco del menú
@@ -49,8 +52,8 @@ def header(toggle_drawer, menu, page: ft.Page, app_state):
                         ft.PopupMenuItem(
                             content=ft.Row(
                                 [
-                                    ft.Icon(ft.Icons.PERSON),
-                                    ft.Text("Perfil"),
+                                    ft.Icon(ft.Icons.PERSON, color=COLORS["on_primary"]),
+                                    ft.Text("Perfil", color=COLORS["on_primary"]),
                                 ]
                             ),
                             on_click=open_profile,
@@ -58,8 +61,8 @@ def header(toggle_drawer, menu, page: ft.Page, app_state):
                         ft.PopupMenuItem(
                             content=ft.Row(
                                 [
-                                    ft.Icon(ft.Icons.SETTINGS),
-                                    ft.Text("Configuraciones"),
+                                    ft.Icon(ft.Icons.SETTINGS, color=COLORS["on_primary"]),
+                                    ft.Text("Configuraciones", color=COLORS["on_primary"]),
                                 ]
                             ),
                             on_click=open_settings,
@@ -68,8 +71,8 @@ def header(toggle_drawer, menu, page: ft.Page, app_state):
                         ft.PopupMenuItem(
                             content=ft.Row(
                                 [
-                                    ft.Icon(ft.Icons.LOGOUT),
-                                    ft.Text("Cerrar sesión"),
+                                    ft.Icon(ft.Icons.LOGOUT, color=COLORS["on_primary"]),
+                                    ft.Text("Cerrar sesión", color=COLORS["on_primary"]),
                                 ]
                             ),
                             on_click=close_menu,
@@ -93,7 +96,7 @@ def header(toggle_drawer, menu, page: ft.Page, app_state):
                     "Bienvenido, Usuario!", 
                     size=24, 
                     weight=ft.FontWeight.W_900,
-                    color=ft.colors.ON_PRIMARY_CONTAINER
+                    color=COLORS["on_primary"]
                 ),
                 # Contenedor con búsqueda, notificaciones, avatar y menú
                 search_notifications_container,

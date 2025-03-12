@@ -63,6 +63,7 @@ class NavigationManager:
                             width=36,
                             height=36,
                             fit=ft.ImageFit.CONTAIN,
+                            color=ft.colors.ON_PRIMARY_CONTAINER
                         ),
                         padding=ft.padding.only(top=20, bottom=20),
                     ),
