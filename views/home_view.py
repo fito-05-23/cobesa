@@ -37,37 +37,41 @@ class EscritorioView(ft.Container):
                     rod.hovered = e.group_index == group_index and e.rod_index == rod_index
             chart.update()
             
+        # Datos de ejemplo (puedes obtenerlos de tu base de datos)
+        datos = [200.000, 500.000, 300.000, 0, 0, 0, 0]
+        max_y = max(datos) * 1.2  # Aumentamos un 20% para dar un poco de margen
+
         chart = ft.BarChart(
             min_y=0,  # Altura mínima de la gráfica
-            max_y=15, 
+            max_y=max_y,  # Altura máxima dinámica
             bar_groups=[
                 ft.BarChartGroup(
                     x=0,
-                    bar_rods=[SampleRod(5)],
+                    bar_rods=[SampleRod(datos[0])],
                 ),
                 ft.BarChartGroup(
                     x=1,
-                    bar_rods=[SampleRod(6.5)],
+                    bar_rods=[SampleRod(datos[1])],
                 ),
                 ft.BarChartGroup(
                     x=2,
-                    bar_rods=[SampleRod(5)],
+                    bar_rods=[SampleRod(datos[2])],
                 ),
                 ft.BarChartGroup(
                     x=3,
-                    bar_rods=[SampleRod(7.5)],
+                    bar_rods=[SampleRod(datos[3])],
                 ),
                 ft.BarChartGroup(
                     x=4,
-                    bar_rods=[SampleRod(9)],
+                    bar_rods=[SampleRod(datos[4])],
                 ),
                 ft.BarChartGroup(
                     x=5,
-                    bar_rods=[SampleRod(11.5)],
+                    bar_rods=[SampleRod(datos[5])],
                 ),
                 ft.BarChartGroup(
                     x=6,
-                    bar_rods=[SampleRod(6)],
+                    bar_rods=[SampleRod(datos[6])],
                 ),
             ],
             bottom_axis=ft.ChartAxis(
@@ -81,10 +85,15 @@ class EscritorioView(ft.Container):
                     ft.ChartAxisLabel(value=6, label=ft.Text("Julio")),
                 ],
             ),
+            left_axis=ft.ChartAxis(
+                labels_size=40,  # Tamaño de las etiquetas del eje Y
+                title=ft.Text("Litros de agua"),  # Título del eje Y
+                title_size=40,  # Tamaño del título del eje Y
+            ),
             on_chart_event=on_chart_event,
             interactive=True,
         )
-        
+                
         # Función para crear una tarjeta pequeña
         def create_card(icono, numero, nombre, porcentaje, color_icono, sube=True):
             return ft.Container(
@@ -191,18 +200,114 @@ class EscritorioView(ft.Container):
                             ft.Container(
                                 chart, 
                                 bgcolor=ft.Colors.WHITE, 
-                                padding=ft.padding.only(top=10, left=20, right=20, bottom=20),
+                                padding=ft.padding.only(top=20, left=20, right=20, bottom=20),
                                 border=ft.border.all(1, ft.colors.GREY_200),  # Borde suave
                                 border_radius=10, 
                                 expand=True,
                             ),
+                            # Dentro de la clase EscritorioView, modifica el contenedor de la DataTable
                             ft.Container(
-                                content=ft.Text("Contenedor 3"),
+                                content=ft.Column(
+                                    controls=[
+                                        # Título "Lista facturas diarias"
+                                        ft.Container(
+                                            content=ft.Text(
+                                                "Lista facturas diarias",
+                                                size=18,
+                                                weight=ft.FontWeight.BOLD,
+                                                color=COLORS["primary"],
+                                            ),
+                                            alignment=ft.alignment.center_left,
+                                            padding=ft.padding.only(left=10, bottom=10),
+                                        ),
+                                        # DataTable con scroll horizontal
+                                        ft.Container(
+                                            content=ft.Column(
+                                                controls=[
+                                                    ft.DataTable(
+                                                        expand=True,
+                                                        #scroll=ft.ScrollMode.AUTO,  # Habilita el scroll horizontal
+                                                        columns=[
+                                                            ft.DataColumn(ft.Text("Factura")),
+                                                            ft.DataColumn(ft.Text("Código")),
+                                                            ft.DataColumn(ft.Text("Dirección")),
+                                                            ft.DataColumn(ft.Text("Action")),
+                                                        ],
+                                                        rows=[
+                                                            ft.DataRow(
+                                                                cells=[
+                                                                    ft.DataCell(ft.Text("001")),  # Número de factura
+                                                                    ft.DataCell(ft.Text("CL123")),  # Código cliente
+                                                                    ft.DataCell(ft.Text("Calle Falsa 123")),  # Dirección
+                                                                    ft.DataCell(
+                                                                        ft.Row(
+                                                                            controls=[
+                                                                                ft.IconButton(  # Icono de "ver"
+                                                                                    icon=ft.icons.REMOVE_RED_EYE,
+                                                                                    icon_color=ft.colors.BLUE,
+                                                                                    on_click=lambda e: print("Ver factura"),
+                                                                                ),
+                                                                                ft.IconButton(  # Icono de "pagar"
+                                                                                    icon=ft.icons.PAYMENT,
+                                                                                    icon_color=ft.colors.GREEN,
+                                                                                    on_click=lambda e: print("Pagar factura"),
+                                                                                ),
+                                                                                ft.IconButton(  # Icono de "imprimir"
+                                                                                    icon=ft.icons.PRINT,
+                                                                                    icon_color=ft.colors.ORANGE,
+                                                                                    on_click=lambda e: print("Imprimir factura"),
+                                                                                ),
+                                                                            ],
+                                                                            spacing=5,  # Espacio entre los íconos
+                                                                        )
+                                                                    ),
+                                                                ],
+                                                            ),
+                                                            # Puedes agregar más filas según sea necesario
+                                                            ft.DataRow(
+                                                                cells=[
+                                                                    ft.DataCell(ft.Text("002")),
+                                                                    ft.DataCell(ft.Text("CL456")),
+                                                                    ft.DataCell(ft.Text("Avenida Siempre Viva 742")),
+                                                                    ft.DataCell(
+                                                                        ft.Row(
+                                                                            controls=[
+                                                                                ft.IconButton(
+                                                                                    icon=ft.icons.REMOVE_RED_EYE,
+                                                                                    icon_color=ft.colors.BLUE,
+                                                                                    on_click=lambda e: print("Ver factura"),
+                                                                                ),
+                                                                                ft.IconButton(
+                                                                                    icon=ft.icons.PAYMENT,
+                                                                                    icon_color=ft.colors.GREEN,
+                                                                                    on_click=lambda e: print("Pagar factura"),
+                                                                                ),
+                                                                                ft.IconButton(
+                                                                                    icon=ft.icons.PRINT,
+                                                                                    icon_color=ft.colors.ORANGE,
+                                                                                    on_click=lambda e: print("Imprimir factura"),
+                                                                                ),
+                                                                            ],
+                                                                            spacing=5,
+                                                                        )
+                                                                    ),
+                                                                ],
+                                                            ),
+                                                        ],
+                                                    ),
+                                                ],
+                                                scroll=ft.ScrollMode.ADAPTIVE,  # Habilita el scroll horizontal
+                                            ),
+                                            #width=500,  # Ancho fijo para forzar el scroll horizontal
+                                        ),
+                                    ],
+                                ),
                                 alignment=ft.alignment.center,
                                 bgcolor=ft.colors.WHITE,
-                                height=300,
-                                border=ft.border.all(1, ft.colors.GREY_200),  # Borde suave
+                                padding=ft.padding.all(20),
+                                border=ft.border.all(1, ft.colors.GREY_200),
                                 border_radius=10,
+                                #expand=True,
                             ),
                         ],
                         spacing=10,
@@ -218,24 +323,23 @@ class EscritorioView(ft.Container):
                                 padding=ft.padding.only(top=10, left=20, right=20, bottom=20),
                                 border=ft.border.all(1, ft.colors.GREY_200),  # Borde suave
                                 border_radius=10, 
+                                height=600,
+                                #expand=True,
                             ),
                             ft.Container(
-                                content=ft.Text("Contenedor 5"),
+                                #content=ft.Text("Contenedor 5"),
                                 alignment=ft.alignment.center,
-                                bgcolor=ft.colors.WHITE,
-                                border=ft.border.all(1, ft.colors.GREY_200),  # Borde suave
-                                border_radius=10,
+                                #bgcolor=ft.colors.WHITE,
+                                #border=ft.border.all(1, ft.colors.GREY_200),  # Borde suave
+                                #border_radius=10,
+                                height=225,
                             ),
                         ],
                         spacing=10,
                     ),
                     #expand=True,
                     alignment=ft.alignment.center,
-                    bgcolor=ft.colors.WHITE,
                     width=450,
-                    height=620,
-                    border=ft.border.all(1, ft.colors.GREY_200),  # Borde suave
-                    border_radius=10,
                 ),
             ],
             expand=True,
